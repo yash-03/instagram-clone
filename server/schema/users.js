@@ -7,9 +7,15 @@ const userSchema = new Schema(
       firstName: String,
       lastName: String,
       mobile: String,
-      email: String,
+      email: {
+        type: String,
+        required: true,
+      },
     },
-    password: String,
+    password: {
+      type: String,
+      required: true,
+    },
     active: { type: Boolean, default: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
