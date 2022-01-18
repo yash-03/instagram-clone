@@ -18,6 +18,7 @@ app.use(express.json());
 app.get("/test", (req, res) => {
   res.send("Welcome to instagram clone");
 });
+
 app.use("/", users);
 
 app.listen(PORT, () => {
