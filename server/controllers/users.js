@@ -8,7 +8,12 @@ module.exports = {
       ...record,
       password,
     };
+    const token = helpers.generateToken({
+      username: record.username,
+      password,
+    });
     const user = new userModel(newRecord);
-    return await user.save();
+    const result = await user.save();
+    return { token, user: result };
   },
 };

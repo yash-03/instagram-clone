@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const saltRounds = 10;
 
@@ -20,5 +21,8 @@ module.exports = {
     } catch (err) {
       console.log(`Error: ${err}`);
     }
+  },
+  generateToken: (user) => {
+    return jwt.sign(user, process.env.JWT_SECRET);
   },
 };
