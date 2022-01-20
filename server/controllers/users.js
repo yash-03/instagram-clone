@@ -8,12 +8,15 @@ module.exports = {
       ...record,
       password,
     };
-    const token = helpers.generateToken({
-      username: record.username,
-      password,
-    });
+
     const user = new userModel(newRecord);
     const result = await user.save();
+    const token = helpers.generateToken({
+      userId: result?._id,
+    });
     return { token, user: result };
+  },
+  authUser: async (userId) => {
+    return await userModel.find({ _id: userId });
   },
 };

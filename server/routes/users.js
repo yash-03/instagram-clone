@@ -1,4 +1,5 @@
 const express = require("express");
+const { verifyToken } = require("../middleware/auth");
 const users = require("../controllers/users");
 
 const router = express.Router();
@@ -12,6 +13,12 @@ router
   })
   .post("/register", async (req, res) => {
     const user = await users.register(req.body);
+    res.json({
+      data: user,
+    });
+  })
+  .post("/authUser", verifyToken, async (req, res) => {
+    const user = await users.authUser(req.user);
     res.json({
       data: user,
     });
