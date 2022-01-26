@@ -5,10 +5,11 @@ const users = require("../controllers/users");
 const router = express.Router();
 
 router
-  .post("/login", (req, res) => {
+  .post("/login", async (req, res) => {
     const { username = "", password = "" } = req.body;
+    const result = await users.login(username, password);
     res.json({
-      data: "login",
+      data: result,
     });
   })
   .post("/register", async (req, res) => {
